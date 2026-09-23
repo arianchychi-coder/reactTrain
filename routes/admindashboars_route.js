@@ -1,0 +1,10 @@
+const express = require("express")
+const admindashboardController = require("../controllers/admindashboard_controller")
+const adminAuthOrization = require("../middelware/admin_middelware")
+const authOrizationToken = require("../middelware/auth_middelware")
+const router = express.Router()
+router.get("/",authOrizationToken,adminAuthOrization,admindashboardController.getAdmin)
+router.post("/",authOrizationToken,adminAuthOrization,admindashboardController.postAdmin)
+router.put("/:id",authOrizationToken,adminAuthOrization,admindashboardController.putAdmin)
+router.delete("/:id",authOrizationToken,adminAuthOrization,admindashboardController.deleteAdmin)
+module.exports = router

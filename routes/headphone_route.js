@@ -1,0 +1,11 @@
+const express = require("express")
+const route = express.Router()
+const headphoneController = require("../controllers/headphone_controller")
+const upload = require("../middelware/headphone_middelware")
+route.get("/getuser",headphoneController.getAll)
+route.post("/register",headphoneController.register)
+route.post("/login",headphoneController.login)
+route.post("/adminlogin",headphoneController.Adminlogin)
+route.put("/api/putheadphone/:id",upload.fields([{name:"image" , maxCount: 1}]),headphoneController.updateInfo)
+route.delete("/api/deleteheadphone/:id",headphoneController.deletInfo)
+module.exports = route

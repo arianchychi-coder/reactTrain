@@ -1,0 +1,18 @@
+require("dotenv").config()
+const express = require("express")
+const cors = require("cors")
+const headphoneRouter = require("./routes/headphone_route")
+const authRouter = require("./routes/auth_route")
+const adminRouter = require("./routes/admindashboars_route")
+const app = express()
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(express.static("public"))
+app.use("/",headphoneRouter)
+app.use("/api/protected",authRouter)
+app.use("/api/admin",adminRouter)
+const PORT = process.env.APP_PORT || 3000
+app.listen(PORT, ()=>{
+    console.log(`Listen to ${PORT}`)
+})
